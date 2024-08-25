@@ -74,12 +74,12 @@ const DrumPad = ({ soundFile, color, title, keyTrigger }) => {
   return (
 
 
-<div className='w-1/4 rounded-lg p-8 m-4' style={{ backgroundColor: color, textAlign: 'center' }}>
-  <div>{title}</div>
-  <button className='bg-gray-800 rounded-lg text-white p-8' onClick={playSound} disabled={!isLoaded}>
-    {isPlaying ? 'Playing...' : 'Play Sound'}
+<div className=' w-1/6  lg:w-1/4 rounded-lg p-2 lg:p-8 m-2 lg:m-4' style={{ backgroundColor: color, textAlign: 'center' }}>
+  <div></div>
+  <button className=' rounded-lg text-sm text-white ' onClick={playSound} disabled={!isLoaded}>
+    {title}
   </button>
-  <div className='mt-4 uppercase'>{keyTrigger}</div>
+  <div className='mt-4 hidden lg:block uppercase'>{keyTrigger}</div>
 </div>
 
   );

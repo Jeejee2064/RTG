@@ -64,8 +64,8 @@ const Sequencer = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [tempo, setTempo] = useState(140);
   const [kickOn, setKickOn] = useState(true);
-  const [clapOn, setClapOn] = useState(true);
-  const [hatOn, setHatOn] = useState(true);
+  const [clapOn, setClapOn] = useState(false);
+  const [hatOn, setHatOn] = useState(false);
   const [hatClosedOn, setHatClosedOn] = useState(true);
   const [bassOn, setBassOn] = useState(true);
 
@@ -296,136 +296,132 @@ useEffect(() => {
 
 
   return (
-   <div className='bg-black flex text-white flex-col pt-4 justify-center items-center m-auto w-screen'>
-  <h1 className ='text-xl'>Random Techno Generator 1.0</h1>
-    <div className='flex items-center m-8'>
-  <div className='flex flex-col items-center'>
-  <button 
-    onClick={togglePlayback} 
-    className={`p-4 rounded-lg mx-4 ${isPlaying ? 'bg-red-600' : 'bg-blue-600'} text-white`}
-  >
-    {isPlaying ? 'Pause' : 'Play'}
-  </button>
-  <span className='text-gray-200'>(SPACE)</span>
-</div>
-    
-    <label htmlFor='tempo' className='mr-4 text-gray-200'>Tempo: {tempo} BPM</label>
+   <div className="bg-black flex flex-col items-center justify-center pt-4 text-white m-0 w-full overflow-x-hidden">
+  <h1 className="text-l">Random Techno Generator 1.0</h1>
+
+  <div className="md:flex items-center lg:m-8 w-full justify-center">
+    <div className="flex flex-col items-center">
+      <button 
+        onClick={togglePlayback} 
+        className={`p-4 rounded-lg mx-4 ${isPlaying ? 'bg-red-600' : 'bg-blue-600'} text-white`}
+      >
+        {isPlaying ? 'Pause' : 'Play'}
+      </button>
+      <span className="text-gray-200 hidden lg:block">(SPACE)</span>
+    </div>
+    <div className='flex justify-center items-center'>
+    <label htmlFor="tempo" className="mr-4 text-gray-200">Tempo: {tempo} BPM</label>
     <input 
-      id='tempo' 
-      type='range' 
-      min='60' 
-      max='200' 
+      id="tempo" 
+      type="range" 
+      min="60" 
+      max="200" 
       value={tempo} 
       onChange={(e) => setTempo(e.target.value)} 
-      className='w-64'
+      className="lg:w-64 w-32"
     />
   </div>
+   </div>
 
-  <div className='flex'>
-
-    <div className='flex flex-col items-center'>
+  <div className="flex flex-wrap gap-2 justify-center">
+    <div className="flex flex-col items-center">
       <button 
         onClick={changeSequence} 
-        className='bg-gray-800 text-white p-4 rounded-lg mx-4'
+        className="bg-gray-800 text-white p-4 rounded-lg mx-4"
       >
         Randomize Bass
       </button>
-      <span className='text-gray-200'>(Q)</span>
+      <span className="text-gray-200 hidden lg:block">(Q)</span>
     </div>
-    
-    <div className='flex flex-col items-center'>
+    <div className="flex flex-col items-center">
       <button 
         onClick={() => setHatClosedSequence(generateHatClosedSequence(16))} 
-        className='bg-gray-800 text-white p-4 rounded-lg mx-4'
+        className="bg-gray-800 text-white p-4 rounded-lg mx-4"
       >
         Randomize Hats
       </button>
-      <span className='text-gray-200'>(W)</span>
+      <span className="text-gray-200 hidden lg:block">(W)</span>
     </div>
-    <div className='flex flex-col items-center'>
-  <button 
-    onClick={() => setRimshotsSequence(generateRimshotsSequence(16))} 
-    className='bg-gray-800 text-white p-4 rounded-lg mx-4'
-  >
-    Randomize Rimshots
-  </button>
-  <span className='text-gray-200'>(E)</span>
-</div>
+    <div className="flex flex-col items-center">
+      <button 
+        onClick={() => setRimshotsSequence(generateRimshotsSequence(16))} 
+        className="bg-gray-800 text-white p-4 rounded-lg mx-4"
+      >
+        Randomize Rimshots
+      </button>
+      <span className="text-gray-200 hidden lg:block">(E)</span>
+    </div>
   </div>
-  
 
- 
-  <div className='flex space-x-4 mt-4'>
-    <div className='flex flex-col items-center'>
+  <div className="flex flex-wrap gap-x-2 items-center justify-center mt-4">
+    <div className="flex flex-col justify-center items-center">
       <button 
         onClick={() => setKickOn(!kickOn)} 
-        className={`p-4 rounded-lg ${kickOn ? 'bg-green-500' : 'bg-red-500'}`}
+        className={`lg:p-4 p-2 rounded-lg ${kickOn ?  'bg-gradient-to-r from-orange-600 via-orange-400 to-yellow-200': 'bg-cyan-400'}`}
       >
-        {kickOn ? 'Kick On' : 'Kick Off'}
+       Kick
       </button>
-      <span className='text-gray-200'>(A)</span>
+      <span className="text-gray-200 hidden lg:block">(A)</span>
     </div>
-    
-    <div className='flex flex-col items-center'>
+    <div className="flex flex-col items-center">
       <button 
         onClick={() => setClapOn(!clapOn)} 
-        className={`p-4 rounded-lg ${clapOn ? 'bg-green-500' : 'bg-red-500'}`}
+        className={`lg:p-4 p-2 rounded-lg ${clapOn ?  'bg-gradient-to-r from-orange-600 via-orange-400 to-yellow-200': 'bg-cyan-400'}`}
       >
-        {clapOn ? 'Clap On' : 'Clap Off'}
+   Clap
       </button>
-      <span className='text-gray-200'>(S)</span>
+      <span className="text-gray-200 hidden lg:block">(S)</span>
     </div>
-    
-    <div className='flex flex-col items-center'>
+    <div className="flex flex-col items-center">
       <button 
         onClick={() => setHatOn(!hatOn)} 
-        className={`p-4 rounded-lg ${hatOn ? 'bg-green-500' : 'bg-red-500'}`}
+        className={`lg:p-4 p-2 rounded-lg ${hatOn ?  'bg-gradient-to-r from-orange-600 via-orange-400 to-yellow-200': 'bg-cyan-400'}`}
       >
-        {hatOn ? 'Hat On' : 'Hat Off'}
+ HO
       </button>
-      <span className='text-gray-200'>(D)</span>
+      <span className="text-gray-200 hidden lg:block">(D)</span>
     </div>
-    
-    <div className='flex flex-col items-center'>
+    <div className="flex flex-col items-center">
       <button 
         onClick={() => setHatClosedOn(!hatClosedOn)} 
-        className={`p-4 rounded-lg ${hatClosedOn ? 'bg-green-500' : 'bg-red-500'}`}
+        className={`lg:p-4 p-2 rounded-lg ${hatClosedOn ?  'bg-gradient-to-r from-orange-600 via-orange-400 to-yellow-200': 'bg-cyan-400'}`}
       >
-        {hatClosedOn ? 'HatClosed On' : 'HatClosed Off'}
+  HC 
       </button>
-      <span className='text-gray-200'>(F)</span>
+      <span className="text-gray-200 hidden lg:block">(F)</span>
     </div>
-    <div className='flex flex-col items-center'>
-  <button 
-    onClick={() => setRimshotsOn(!rimshotsOn)} 
-    className={`p-4 rounded-lg ${rimshotsOn ? 'bg-green-500' : 'bg-red-500'}`}
-  >
-    {rimshotsOn ? 'Rimshots On' : 'Rimshots Off'}
-  </button>
-  <span className='text-gray-200'>(G)</span>
-</div>
-    <div className='flex flex-col items-center'>
-  <button 
-    onClick={() => setBassOn(!bassOn)} 
-    className={`p-4 rounded-lg ${bassOn ? 'bg-green-500' : 'bg-red-500'}`}
-  >
-    {bassOn ? 'Bass On' : 'Bass Off'}
-  </button>
-  <span className='text-gray-200'>(H)</span>
-</div>
+    <div className="flex flex-col items-center">
+      <button 
+        onClick={() => setRimshotsOn(!rimshotsOn)} 
+        className={`lg:p-4 p-2 rounded-lg ${rimshotsOn ?  'bg-gradient-to-r from-orange-600 via-orange-400 to-yellow-200': 'bg-cyan-400'}`}
+      >
+        Rim 
+      </button>
+      <span className="text-gray-200 hidden lg:block">(G)</span>
+    </div>
+    <div className="flex flex-col items-center">
+      <button 
+        onClick={() => setBassOn(!bassOn)} 
+        className={`lg:p-4 p-2 rounded-lg ${bassOn ?  'bg-gradient-to-r from-orange-600 via-orange-400 to-yellow-200': 'bg-cyan-400'}`}
+      >
+Bass
+      </button>
+      <span className="text-gray-200 hidden lg:block">(H)</span>
+    </div>
   </div>
 
-  <div className='flex mt-8'>
+  <div className="flex justify-center mt-8 w-full">
     {Array.from({ length: 16 }).map((_, index) => (
       <div
         key={index}
-        className={`w-8 h-8 mx-1 border-2 border-gray-400 rounded-full ${currentStep === index ? 'bg-blue-500' : 'bg-white'}`}
+        className={`lg:w-8 lg:h-8 w-4 h-4 mx-1 border-2 border-gray-400 rounded-full ${currentStep === index ? 'bg-blue-500' : 'bg-white'}`}
       />
     ))}
   </div>
 
-  {!isLoaded && <p>Loading sample...</p>}
+  {!isLoaded && <p>Loading samples...</p>}
 </div>
+
 
   );
 };
